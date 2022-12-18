@@ -4,15 +4,14 @@ from matplotlib.animation import FuncAnimation
 
 steps = 1000
 t = np.linspace(0, 10, steps)
-ph = np.sin(4.8 * t)
 
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
 ax.set(xlim=[-8, 8], ylim=[-8, 8], zlim=[0, 8])
-theta = np.linspace(0, 20 * np.pi, 1000)
+psi = np.linspace(0, 20 * np.pi, 1000)
 
-y = 3.5 * np.cos(theta)
-z = 3.5 * np.sin(theta)
+y = 3.5 * np.cos(psi)
+z = 3.5 * np.sin(psi)
 
 Z_PointCentral = 8.5
 Y_PointCentral = 0
@@ -48,14 +47,14 @@ spring = ax.plot(spring_xyz[0], spring_xyz[1], spring_xyz[2], linewidth=2, color
 
 
 def animation(i):
-    circle.set_data_3d(y * np.cos(theta[i]), y * np.sin(theta[i]), z + 5)
-    current_z = (Z_PointM + 3.5 * np.cos(theta[i]))
+    circle.set_data_3d(y * np.cos(psi[i]), y * np.sin(psi[i]), z + 5)
+    current_z = (Z_PointM + 3.5 * np.cos(psi[i]))
 
     if current_z >= 5:
         current_z = current_z - 2 * (current_z - 5)
 
-    new_x = (X_PointM + 3.5 * np.sin(theta[i])) * np.cos(theta[i])
-    new_y = (Y_PointM + 3.5 * np.sin(theta[i])) * np.sin(theta[i])
+    new_x = (X_PointM + 3.5 * np.sin(psi[i])) * np.cos(psi[i])
+    new_y = (Y_PointM + 3.5 * np.sin(psi[i])) * np.sin(psi[i])
     new_z = current_z
 
     PointM.set_data_3d(new_x, new_y, new_z)
